@@ -1,0 +1,22 @@
+{% extends 'bootstrap_base.html' %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+    <h1>Products</h1>
+
+    <div>
+        <form method="post" action="/product/add">
+            Add a Product: 
+            <input type="text" name="product_name" placeholder="Product Name" />
+            <input type="text" name="price" placeholder="Price" />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    {% for product in products %}
+        <div>
+            {{ product['name'] }}, price: ${{ product['price'] }}
+        </div>
+    {% endfor %}
+{% endblock %}

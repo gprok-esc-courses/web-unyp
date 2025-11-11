@@ -12,7 +12,7 @@
         <!-- Display any flashed error messages -->
 
         {% for message in get_flashed_messages() %}
-            {{ message }}
+            <p style="color:red;">{{ message }}</p>
         {% endfor %}
 
         <form method="post">

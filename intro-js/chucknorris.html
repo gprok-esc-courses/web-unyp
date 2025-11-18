@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Stupid jokes</h1>
+
+    <button onclick="getJoke()">Get next joke</button>
+
+    <div id="joke">No joke yet</div>
+
+    <script>
+        function getJoke() {
+            fetch('https://api.chucknorris.io/jokes/random')
+            .then(response => response.json())
+            .then(data => document.getElementById('joke').innerHTML = data['value'])
+        }
+    </script>
+</body>
+</html>

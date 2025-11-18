@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Register</h1>
+
+    <div id="error"></div>
+
+    {% for message in get_flashed_messages() %}
+        <p style="color: red; font-weight: bold;">{{ message }}</p>
+    {% endfor %}
+
+    <div>
+        <form method="post"> <!-- onsubmit="return checkPasswords()" -->
+            <input type="text" name="username" placeholder="Username" value="{{ username }}" required /> <br>
+            <input type="password" name="password" placeholder="Password" id="password" required /> <br>
+            <input type="password" name="password2" placeholder="Repeat Password" id="password2" required /> <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function checkPasswords() {
+            p1 = document.getElementById('password').value
+            p2 = document.getElementById('password2').value 
+            if(p1 != p2) {
+                document.getElementById('error').innerHTML = "ERROR: passwords do not match"
+                return false
+            }
+            else {
+                return true
+            }
+        }
+    </script>
+</body>
+</html>

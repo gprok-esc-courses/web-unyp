@@ -1,7 +1,9 @@
-from flask import Flask
+from flask import Flask, request, render_template, redirect, flash
 import sqlite3 
+from hashlib import sha512
 
 app = Flask(__name__)
+app.secret_key = "lasdlaisdhsalkdhsaohsalashdioasdhsaiodhoaidfhwefhoweifoiweoifhweofehfewpoih"
 
 def get_db_conn():
     db = sqlite3.connect('projects.db')
@@ -56,6 +58,37 @@ def initialize_db():
 @app.route('/')
 def home():
     return "HOME PAGE"
+
+
+@app.route('/register', methods=[ 'GET', 'POST' ])
+def register():
+    username = ''
+    if request.method == 'POST':
+        data = request.form 
+        username = data['username']
+        password = data['password']
+        password2 = data['password2']
+        if password == password2:
+            db = get_db_conn()
+            cursor = db.cursor()
+            user = cursor.execute("SELECT * FROM users WHERE username=?", (username,)).fetchone()
+            if not user:
+                hashed = sha512((username + password).encode('utf-8')).hexdigest()
+                cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, hashed))
+                db.commit()
+                return redirect('/login')
+            else:
+                flash('ERROR: Username already taken')
+        else:
+            flash('ERROR: Passwords do not match')
+    return render_template('register.html', username=username)
+
+
+@app.route('/login')
+def login():
+    return "LOGIN"
+
+
 
 
 

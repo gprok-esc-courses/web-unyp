@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Login{% endblock %}
 
 
 {% block content %}
-    <h1>Register</h1>
+    <h1>Login</h1>
 
     <div id="error"></div>
 
@@ -16,23 +16,7 @@
         <form method="post"> <!-- onsubmit="return checkPasswords()" -->
             <input type="text" name="username" placeholder="Username" value="{{ username }}" required /> <br>
             <input type="password" name="password" placeholder="Password" id="password" required /> <br>
-            <input type="password" name="password2" placeholder="Repeat Password" id="password2" required /> <br>
             <button type="submit">Submit</button>
         </form>
     </div>
-
-    <script>
-        function checkPasswords() {
-            p1 = document.getElementById('password').value
-            p2 = document.getElementById('password2').value 
-            if(p1 != p2) {
-                document.getElementById('error').innerHTML = "ERROR: passwords do not match"
-                return false
-            }
-            else {
-                return true
-            }
-        }
-    </script>
-
 {% endblock %}

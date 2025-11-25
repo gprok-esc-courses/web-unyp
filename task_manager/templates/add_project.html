@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Project{% endblock %}
+
+
+{% block content %}
+
+    <h1>Add Project</h1>
+
+    <form method="post">
+        <input type="text" name="title" placeholder="Title" required /> 
+        <button type="submit">Submit</button>
+    </form>
+
+{% endblock %}

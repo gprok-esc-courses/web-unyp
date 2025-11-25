@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects{% endblock %}
+
+
+{% block content %}
+    <h1>Projects</h1>
+    <a href="/add/project">Add Project</a> 
+    <a href="/logout">Logout</a>
+
+    <div>
+        {% for project in projects %}
+            <h2>{{ project['title'] }}</h2>
+            <hr width="30%" style="text-align: left;">
+        {% endfor %}
+    </div>
+{% endblock %}
